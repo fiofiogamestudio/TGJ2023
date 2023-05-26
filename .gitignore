@@ -1,0 +1,34 @@
+# Unity generated files
+[Ll]ibrary/
+[Ll]ogs/
+[Oo]bj/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Mm]emoryCaptures/
+
+# Ignore user-specific settings
+[Us]erSettings/
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+
+# Crash reports
+sysinfo.txt
+
+# IDE specific
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.userprefs
+.vscode/
+.idea/
+
+# Other
+.DS_Store
+Thumbs.db
+Desktop.ini
+ignore.conf
