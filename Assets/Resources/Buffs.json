@@ -1,0 +1,38 @@
+{
+    "blessingBuffs": [
+        {
+            "buffType": "Blessing",
+            "buffName": "Buff of Prosperity",
+            "buffDescription": "Increases food production",
+            "buffEffects": [
+                "Increase food production by 20%"
+            ]
+        },
+        {
+            "buffType": "Blessing",
+            "buffName": "Buff of Protection",
+            "buffDescription": "Reduces the damage taken from bad events",
+            "buffEffects": [
+                "Reduce damage taken by 15%"
+            ]
+        }
+    ],
+    "curseBuffs": [
+        {
+            "buffType": "Curse",
+            "buffName": "Curse of Starvation",
+            "buffDescription": "Reduces food production",
+            "buffEffects": [
+                "Decrease food production by 20%"
+            ]
+        },
+        {
+            "buffType": "Curse",
+            "buffName": "Curse of Vulnerability",
+            "buffDescription": "Increases the damage taken from bad events",
+            "buffEffects": [
+                "Increase damage taken by 15%"
+            ]
+        }
+    ]
+}

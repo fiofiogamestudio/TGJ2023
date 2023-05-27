@@ -1,0 +1,74 @@
+{
+    "normalMissions": [
+        {
+            "missionType": 0,
+            "name": "Hunting Animals",
+            "description": "Hunt animals for food.",
+            "amount": 2,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "Get 10 food",
+                "Get Injured mission if failed"
+            ]
+        }
+    ],
+    "continuesMissions": [
+        {
+            "missionType": 1,
+            "name": "Gathering Berries",
+            "description": "Gather berries for food.",
+            "amount": 1,
+            "costs": [],
+            "turnEffects": [
+                "Get 2 food"
+            ],
+            "endEffects": []
+        },
+        {
+            "missionType": 1,
+            "name": "Exploring The World",
+            "description": "Explore the world for new possibilities.",
+            "amount": 5,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "Discover 1 event card"
+            ]
+        },
+        {
+            "missionType": 1,
+            "name": "Building Home",
+            "description": "Build homes to increase the population.",
+            "amount": 5,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "Increase 1 population"
+            ]
+        },
+        {
+            "missionType": 1,
+            "name": "Planning Development",
+            "description": "Plan for the development of the tribe.",
+            "amount": 3,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "Get Exploring The World mission or Sacrifice mission or Building mission"
+            ]
+        },
+        {
+            "missionType": 1,
+            "name": "Sacrificing to the Gods",
+            "description": "Sacrifice to the gods for blessings.",
+            "amount": 5,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "Choose 1 god and get a blessing"
+            ]
+        }
+    ],
+    "emergencyMission": []
+}

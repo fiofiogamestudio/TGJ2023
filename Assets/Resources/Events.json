@@ -1,0 +1,136 @@
+{
+    "goodEvents": [
+        {
+            "eventType": "GoodEvent",
+            "eventName": "浆果丰收",
+            "eventDescription": "获得1张 永续任务 采集浆果（1）",
+            "eventEffects": [
+                "获得1食物"
+            ]
+        },
+        {
+            "eventType": "GoodEvent",
+            "eventName": "追踪兽群",
+            "eventDescription": "获得1~3张 普通任务 狩猎动物（2）",
+            "eventEffects": [
+                "获得5食物或受伤"
+            ]
+        },
+        {
+            "eventType": "GoodEvent",
+            "eventName": "发起贸易",
+            "eventDescription": "一个其它部落似乎迁徙到了附近，开辟了一条发展道路",
+            "eventEffects": [
+                "消耗5食物",
+                "成功：获得15食物",
+                "失败：获得5食物"
+            ]
+        },
+        {
+            "eventType": "GoodEvent",
+            "eventName": "迷路访客",
+            "eventDescription": "一个迷路的原始人来到了你的部落",
+            "eventEffects": [
+                "消耗2食物",
+                "成功：人口+1"
+            ]
+        },
+        {
+            "eventType": "GoodEvent",
+            "eventName": "古老遗迹",
+            "eventDescription": "比原始更原始的遗迹",
+            "eventEffects": [
+                "发现1张祝福"
+            ]
+        }
+    ],
+    "badEvents": [
+        {
+            "eventType": "BadEvent",
+            "eventName": "洪水蔓延",
+            "eventDescription": "获得1~3张 普通任务 清理废墟（2）",
+            "eventEffects": []
+        },
+        {
+            "eventType": "BadEvent",
+            "eventName": "疾病爆发",
+            "eventDescription": "获得1~3张 危机任务 疾病！（1）",
+            "eventEffects": [
+                "失败：获得1张 危机任务 疾病"
+            ]
+        },
+        {
+            "eventType": "BadEvent",
+            "eventName": "敌人来袭",
+            "eventDescription": "获得2~5张 危机任务 迎战吧！（1）",
+            "eventEffects": [
+                "成功：获得危机任务 受伤（3）"
+            ]
+        },
+        {
+            "eventType": "BadEvent",
+            "eventName": "仓库起火",
+            "eventDescription": "获得1~3张 危机任务 烧焦了！（1）",
+            "eventEffects": [
+                "减少1食物"
+            ]
+        },
+        {
+            "eventType": "BadEvent",
+            "eventName": "部落内斗",
+            "eventDescription": "获得2张 危机任务 两败俱伤（1）",
+            "eventEffects": [
+                "减少人口"
+            ]
+        }
+    ],
+    "normalEvents": [],
+    "randomEvents": [
+        {
+            "eventType": "RandomEvent",
+            "eventName": "遥远的雷声",
+            "eventDescription": "远处的雷声让成员们忧心忡忡，是暴风雨来临的预兆吗？",
+            "eventEffects": [
+                "发现1张负面事件"
+            ]
+        },
+        {
+            "eventType": "RandomEvent",
+            "eventName": "失踪的成员",
+            "eventDescription": "一位部落成员失踪了，需要尽快找到他",
+            "eventEffects": [
+                "减少1人口",
+                "获得1张立即任务 成员搜救",
+                "成员搜救（3）",
+                "成功 增加1人口"
+            ]
+        },
+        {
+            "eventType": "RandomEvent",
+            "eventName": "奇特的天象",
+            "eventDescription": "天气变得很奇特，不知道是好是坏",
+            "eventEffects": [
+                "成功 获得1张正面事件",
+                "失败 获得1张负面事件"
+            ]
+        },
+        {
+            "eventType": "RandomEvent",
+            "eventName": "野兽袭击",
+            "eventDescription": "一只疯狂的野兽闯入了领地，造成了混乱",
+            "eventEffects": [
+                "成功 获得5食物",
+                "失败 受伤"
+            ]
+        },
+        {
+            "eventType": "RandomEvent",
+            "eventName": "陌生部族",
+            "eventDescription": "发现了一个新部落，但是暂时还不清楚他们的意图",
+            "eventEffects": [
+                "成功 获得1张 贸易之路",
+                "失败 获得1张 迎战吧"
+            ]
+        }
+    ]
+}
