@@ -23,16 +23,28 @@ public class HandManager : MonoBehaviour
             DiscardCard(HandCardList[0]);
         }
 
-        // 检测鼠标是否在Grid上
-        checkGrids();
+        // 检测切换窗口导致的Release
+        checkSwitchWindow();
 
-        // 检测鼠标松开事件 如果当前有选择Card 并放在Grid上 就执行Card（Mission）
-        checkRelease();
+        // 检测鼠标是否在Grid上
+        checkHoveringGrid();
+
+        // 检测鼠标是否选中Grid且上面有Card
+        checkSelectGrid();
+
     }
 
     public GridController hoveredGrid = null;
 
-    private void checkGrids()
+    private void checkSwitchWindow()
+    {
+        if (!InputManager.GetMouseHolding())
+        {
+            if (selectedCard) ReleaseCard(selectedCard, switchWindow: true);
+        }
+    }
+
+    private void checkHoveringGrid()
     {
         Vector3 planedPos = InputManager.GetMousePosPlaned();
         // Debug.Log(planedPos + " " + GridList[0].transform.position);
@@ -53,29 +65,23 @@ public class HandManager : MonoBehaviour
         }
     }
 
-    private void checkRelease()
+    private void checkSelectGrid()
     {
-        if (!InputManager.GetMouseHolding())
+        if (InputManager.GetMouseDown())
         {
-            if (!InputManager.GetMouseRelease())
+            if (selectedCard && selectedCard.binding)
             {
-                // Debug.Log("not handle");
-                // 切换程序导致的松开 不处理
-                if (selectedCard) ReleaseCard(selectedCard);
+                pickCard(selectedCard, backToHand: false);
             }
-            else
-            {
-                // 手动的松开 处理
-                if (selectedCard && hoveredGrid)
-                {
-                    Debug.Log("handle");
-                    PlaceCard(selectedCard, hoveredGrid);
-                }
-            }
-
         }
-
-
+        else if (InputManager.GetMouseRightDown())
+        {
+            selectedCard = hoveredCard;
+            if (selectedCard && selectedCard.binding)
+            {
+                pickCard(selectedCard, backToHand: true);
+            }
+        }
     }
 
     public void GenerateCard()
@@ -122,11 +128,38 @@ public class HandManager : MonoBehaviour
     private void placeCard(CardController card, GridController grid)
     {
         // Remove from Layout
+        TheHandLayout.ReleaseCard(card.transform);
         TheHandLayout.RemoveHand(card.transform);
 
         // Move from HandList to GridList
         HandCardList.Remove(card);
         GridCardList.Add(card);
+
+        // card & grid bind
+        card.BindGrid(grid);
+        grid.BindCard(card);
+    }
+
+    private void pickCard(CardController card, bool backToHand = true)
+    {
+        // Add to Layout
+        TheHandLayout.AddHand(card.transform);
+        if (!backToHand)
+        {
+            TheHandLayout.SelectCard(card.transform);
+        }
+        else
+        {
+            ReleaseCard(card);
+        }
+
+        // Move from GridList to HandList
+        HandCardList.Add(card);
+        GridCardList.Remove(card);
+
+        // card & grid unbind
+        card.bindedGrid.UnBind();
+        card.UnBind();
     }
 
     [Header("Hand Cards Info")]
@@ -140,25 +173,54 @@ public class HandManager : MonoBehaviour
     public void HoverCard(CardController card)
     {
         this.hoveredCard = card;
-        TheHandLayout.HoverCard(card.transform);
+        if (!card.binding)
+        {
+            TheHandLayout.HoverCard(card.transform);
+        }
     }
 
     public void SelectCard(CardController card)
     {
         this.selectedCard = card;
-        TheHandLayout.SelectCard(card.transform);
+        if (!card.binding)
+        {
+            TheHandLayout.SelectCard(card.transform);
+        }
     }
 
-    public void ReleaseCard(CardController card)
+    public void ReleaseCard(CardController card, bool switchWindow = false)
     {
+        // 先处理放置卡牌的逻辑
+        if (!switchWindow)
+        {
+            handlePlaceCard();
+        }
+
         if (this.selectedCard == card) this.selectedCard = null;
-        TheHandLayout.ReleaseCard(card.transform);
+        if (!card.binding)
+        {
+            TheHandLayout.ReleaseCard(card.transform);
+        }
+    }
+
+    void handlePlaceCard()
+    {
+        if (selectedCard && hoveredGrid)
+        {
+            if (!hoveredGrid.binding)
+            {
+                PlaceCard(selectedCard, hoveredGrid);
+            }
+        }
     }
 
     public void ExitCard(CardController card)
     {
         if (this.hoveredCard == card) this.hoveredCard = null;
-        TheHandLayout.UnhoverCard(card.transform);
+        if (!card.binding)
+        {
+            TheHandLayout.UnhoverCard(card.transform);
+        }
     }
 
 

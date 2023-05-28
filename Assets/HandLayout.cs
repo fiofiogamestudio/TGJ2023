@@ -26,6 +26,7 @@ public class HandLayout : MonoBehaviour
     {
         HandCount--;
         CardTransforms.Remove(cardTransform);
+        cardTransform.GetComponent<Canvas>().sortingOrder = -1;
 
         refreshAnchoredTransforms();
         refreshCardOrder();
@@ -233,11 +234,5 @@ public class HandLayout : MonoBehaviour
     private int queryCardIndex(Transform cardTransform)
     {
         return CardTransforms.IndexOf(cardTransform);
-    }
-
-    private void setAsFirstOrder(Transform cardTransform)
-    {
-        int index = queryCardIndex(cardTransform);
-        CardTransforms[index].GetComponent<Canvas>().sortingOrder = 99;
     }
 }

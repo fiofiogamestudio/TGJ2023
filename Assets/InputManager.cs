@@ -61,4 +61,14 @@ public class InputManager : MonoBehaviour
     {
         return Input.GetMouseButtonUp(0);
     }
+
+    public static bool GetMouseDown()
+    {
+        return Input.GetMouseButtonDown(0);
+    }
+
+    public static bool GetMouseRightDown()
+    {
+        return Input.GetMouseButtonDown(1);
+    }
 }
