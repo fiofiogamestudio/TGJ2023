@@ -5,9 +5,8 @@
         "descripton": "你们来到了一处丰饶之地，一切似乎都是那么美好",
         "goodPossibility": 4,
         "badPossibility": 2,
-        "randomPosiibility": 4,
+        "normalPossibility": 4,
         "initMissions": [
-            "初始物资",
             "采集果实",
             "采集果实",
             "建造家园",
@@ -20,12 +19,11 @@
         "descripton": "你们来到了一片充满机遇的土地，但也面临着未知的挑战",
         "goodPossibility": 3,
         "badPossibility": 3,
-        "randomPosiibility": 4,
+        "normalPossibility": 4,
         "initMissions": [
             "狩猎动物",
-            "狩猎动物",
             "探索世界",
-            "规划发展",
+            "建造家园",
             "迎战吧！"
         ]
     },
@@ -35,13 +33,12 @@
         "descripton": "你们是一群被驱逐至苦寒之地的遗弃者，必须在绝望中寻找一线生机.",
         "goodPossibility": 2,
         "badPossibility": 4,
-        "randomPosiibility": 4,
+        "normalPossibility": 4,
         "initMissions": [
-            "采集果实",
-            "规划发展",
             "受伤",
-            "传染病",
-            "传染病"
+            "疾病！",
+            "祭祀神祗",
+            "规划发展"
         ]
     }
 }

@@ -17,7 +17,7 @@ public class GameData
     public string descripton;
     public int goodPossibility;
     public int badPossibility;
-    public int randomPosiibility;
+    public int normalPossibility;
     public string[] initMissions;
 }
 

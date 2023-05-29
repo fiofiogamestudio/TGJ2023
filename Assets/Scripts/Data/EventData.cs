@@ -25,5 +25,4 @@ public class EventWrapper
     public EventData[] goodEvents;
     public EventData[] badEvents;
     public EventData[] normalEvents;
-    public EventData[] randomEvents;
 }

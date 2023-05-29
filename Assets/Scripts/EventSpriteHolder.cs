@@ -11,11 +11,14 @@ public class EventSpriteHolder : MonoBehaviour
         public Sprite sprite;
     }
 
-    public List<EventSpritePair> CardSpriteMap = new List<EventSpritePair>();
+    public List<EventSpritePair> EventSpriteMap = new List<EventSpritePair>();
+
+    public static EventSpriteHolder instance;
+    void Awake() { if (instance == null) instance = this; }
 
     public Sprite GetEventSprite(string name)
     {
-        foreach (var pair in CardSpriteMap)
+        foreach (var pair in EventSpriteMap)
         {
             if (pair.name == name) return pair.sprite;
         }

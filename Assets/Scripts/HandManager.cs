@@ -72,8 +72,10 @@ public class HandManager : MonoBehaviour
 
     private void checkSelectGrid()
     {
+        // 危机任务不能取消
         if (InputManager.GetMouseDown())
         {
+            if (selectedCard && selectedCard.missionType == MissionType.Emergency) return;
             if (selectedCard && selectedCard.binding)
             {
                 pickCard(selectedCard, backToHand: false);
@@ -81,6 +83,7 @@ public class HandManager : MonoBehaviour
         }
         else if (InputManager.GetMouseRightDown())
         {
+            if (hoveredCard && hoveredCard.missionType == MissionType.Emergency) return;
             selectedCard = hoveredCard;
             if (selectedCard && selectedCard.binding)
             {
@@ -281,15 +284,28 @@ public class HandManager : MonoBehaviour
 
     // Execute Cards
 
+    public int countEmergencyCardsInHand()
+    {
+        int count = 0;
+        foreach (var mission in HandCardList)
+        {
+            if (mission.missionType == MissionType.Emergency) count++;
+        }
+        return count;
+    }
+
+    public int countEmergencyCardsInGrid()
+    {
+        int count = 0;
+        foreach (var mission in GridCardList)
+        {
+            if (mission.missionType == MissionType.Emergency) count++;
+        }
+        return count;
+    }
+
     public void ExecuteCards()
     {
-        // check emergency cards
-        if (checkEmergencyCardsInHand())
-        {
-            Debug.LogWarning("Emergency!");
-            return;
-        }
-
         // discard time card in hands
         discardTimeCardsInHand();
 
@@ -344,6 +360,7 @@ public class HandManager : MonoBehaviour
                     toDestroyCardList.Add(card);
                 }
 
+                // 死亡或离开 先在这里直接特殊处理
             }
 
             card.RefreshView();
@@ -351,12 +368,21 @@ public class HandManager : MonoBehaviour
 
         foreach (var card in toDestroyCardList)
         {
+            Debug.Log(card.missionName);
+            if (card.missionName == "死亡" || card.missionName == "离去")
+            {
+                Debug.Log("移除人口");
+                GameManager.instance.PeopleCount--;
+                RemoveGrid(card.bindedGrid);
+            }
+
             selectedCard = card;
             if (selectedCard && selectedCard.binding)
             {
                 pickCard(selectedCard, backToHand: true);
             }
             DiscardCard(card);
+
         }
     }
 

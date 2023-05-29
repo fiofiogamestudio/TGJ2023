@@ -3,26 +3,78 @@
         {
             "missionType": 0,
             "name": "狩猎动物",
-            "description": "获得10食物\n可能受伤",
+            "description": "获得15食物\n可能受伤",
             "amount": 2,
             "left": -1,
             "costs": [],
             "turnEffects": [],
             "endEffects": [
-                "food, 10",
+                "food, 15",
                 "hurt, 5"
             ]
         },
         {
             "missionType": 0,
             "name": "初始物资",
-            "description": "获得10食物",
+            "description": "获得20食物",
             "amount": 1,
             "left": -1,
             "costs": [],
             "turnEffects": [],
             "endEffects": [
-                "food, 10"
+                "food, 20"
+            ]
+        },
+        {
+            "missionType": 0,
+            "name": "接待旅客",
+            "description": "消耗5食物\n增加1人口",
+            "amount": 1,
+            "left": 0,
+            "costs": [
+                "food, -5"
+            ],
+            "turnEffects": [],
+            "endEffects": [
+                "people, 1"
+            ]
+        },
+        {
+            "missionType": 0,
+            "name": "搜救",
+            "description": "增加1人口",
+            "amount": 3,
+            "left": 0,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "people, 1"
+            ]
+        },
+        {
+            "missionType": 0,
+            "name": "解读天气",
+            "description": "发现1个随机事件",
+            "amount": 2,
+            "left": 0,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "new_event"
+            ]
+        },
+        {
+            "missionType": 0,
+            "name": "尝试交涉",
+            "description": "消耗10食物，获得1张贸易之路",
+            "amount": 3,
+            "left": 0,
+            "costs": [
+                "food, -10"
+            ],
+            "turnEffects": [],
+            "endEffects": [
+                "add_card, 贸易之路"
             ]
         }
     ],
@@ -66,7 +118,7 @@
         {
             "missionType": 1,
             "name": "祭祀神祗",
-            "description": "消耗5食物\n获得1个随机祝福",
+            "description": "消耗5食物\n发现1个正面事件",
             "amount": 3,
             "left": -1,
             "costs": [
@@ -74,19 +126,35 @@
             ],
             "turnEffects": [],
             "endEffects": [
-                "buff"
+                "new_event, good"
             ]
         },
         {
             "missionType": 1,
             "name": "规划发展",
-            "description": "获得1张随机\n初始任务",
+            "description": "每回合消耗1食物\n获得1张随机\n初始任务",
             "amount": 5,
             "left": -1,
-            "costs": [],
+            "costs": [
+                "food, -1"
+            ],
             "turnEffects": [],
             "endEffects": [
                 "plan"
+            ]
+        },
+        {
+            "missionType": 1,
+            "name": "贸易之路",
+            "description": "消耗5食物\n获得15食物",
+            "amount": 3,
+            "left": -1,
+            "costs": [
+                "food, -5"
+            ],
+            "turnEffects": [],
+            "endEffects": [
+                "food, 15"
             ]
         }
     ],
@@ -100,6 +168,99 @@
             "costs": [],
             "turnEffects": [],
             "endEffects": [
+                "hurt_or_die"
+            ]
+        },
+        {
+            "missionType": 2,
+            "name": "受伤",
+            "description": "要修养一阵子了",
+            "amount": 3,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": []
+        },
+        {
+            "missionType": 2,
+            "name": "死亡",
+            "description": "这位成员逝去了",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "people_die"
+            ]
+        },
+        {
+            "missionType": 2,
+            "name": "离去",
+            "description": "这位成员不见了",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "people_die"
+            ]
+        },
+        {
+            "missionType": 2,
+            "name": "清理废墟",
+            "description": "真是非常麻烦",
+            "amount": 3,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": []
+        },
+        {
+            "missionType": 2,
+            "name": "疾病！",
+            "description": "小感冒",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": []
+        },
+        {
+            "missionType": 2,
+            "name": "食物烧了！",
+            "description": "失去1食物",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "food, -1"
+            ]
+        },
+        {
+            "missionType": 2,
+            "name": "未雨绸缪",
+            "description": "每回合获得1食物，结束获得1个负面事件",
+            "amount": 5,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [
+                "food, 1"
+            ],
+            "endEffects": [
+                "new_event, bad"
+            ]
+        },
+        {
+            "missionType": 2,
+            "name": "狩猎野兽",
+            "description": "获得20食物，受伤或死亡",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "food, 20",
                 "hurt_or_die"
             ]
         }

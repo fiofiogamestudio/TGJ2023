@@ -10,12 +10,12 @@ public class EventHolder : MonoBehaviour
     [ReadOnly]
     public EventData[] BadEvents;
     [ReadOnly]
-    public EventData[] NormalDatas;
-    [ReadOnly]
-    public EventData[] RandomDatas;
+    public EventData[] NormalEvents;
 
+    public static EventHolder instance;
     void Awake()
     {
+        if (instance == null) instance = this;
         loadEvents();
     }
 
@@ -24,7 +24,48 @@ public class EventHolder : MonoBehaviour
         EventWrapper eventWrapper = DataLoader.LoadJson<EventWrapper>("Events");
         GoodEvents = eventWrapper.goodEvents;
         BadEvents = eventWrapper.badEvents;
-        NormalDatas = eventWrapper.normalEvents;
-        RandomDatas = eventWrapper.randomEvents;
+        NormalEvents = eventWrapper.normalEvents;
+    }
+
+    public EventData GetGoodEvent()
+    {
+        int index = Random.Range(0, GoodEvents.Length);
+        return GoodEvents[index];
+    }
+
+    public EventData GetBadEvent()
+    {
+        int index = Random.Range(0, BadEvents.Length);
+        return BadEvents[index];
+    }
+
+    public EventData GetNormalEvent()
+    {
+        int index = Random.Range(0, NormalEvents.Length);
+        return NormalEvents[index];
+    }
+
+    public EventData GetRandomEvent(GameData data)
+    {
+        // Test
+        // return GetBadEvent();
+        int good = data.goodPossibility;
+        int bad = data.badPossibility;
+        int normal = data.normalPossibility;
+        bad += good;
+        normal += bad;
+        int i = Random.Range(1, normal + 1);
+        if (i < good)
+        {
+            return GetGoodEvent();
+        }
+        else if (i < bad)
+        {
+            return GetBadEvent();
+        }
+        else
+        {
+            return GetNormalEvent();
+        }
     }
 }

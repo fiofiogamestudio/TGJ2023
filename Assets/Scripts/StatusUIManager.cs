@@ -26,13 +26,14 @@ public class StatusUIManager : MonoBehaviour
     {
         int turn = GameManager.instance.TurnCount;
         turn = (turn - 1) % 36 + 1;
-        int month = (turn - 1) % 3 + 1;
-        int season = (month - 1) % 4 + 1;
-        int monthPart = (turn - 1) % 3 + 1;
+        int season = (turn - 1) / 9 + 1;   // 季度是9个turn一轮回
+        int month = ((turn - 1) / 3) % 4 + 1;  // 月份是3个turn一轮回, 4个月一季度
+        int monthPart = (turn - 1) % 3 + 1; // 每月分为上中下旬
         TimeText.text = numberToSeason(season) + " " +
                         numberToMonth(month) + "月 " +
                         numberToMonthPart(monthPart);
     }
+
 
     string numberToSeason(int num)
     {

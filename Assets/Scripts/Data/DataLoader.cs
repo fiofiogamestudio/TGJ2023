@@ -33,10 +33,5 @@ public class DataDebuger
             Debug.Log("\t " + normalEvent.eventName);
         }
 
-        Debug.Log("Random Events");
-        foreach (var randomEvent in eventWrapper.randomEvents)
-        {
-            Debug.Log("\t " + randomEvent.eventName);
-        }
     }
 }

@@ -84,18 +84,21 @@ public class CardEffectManager : MonoBehaviour
     {
         if (temp_args.Count == 0)
         {
-            Debug.Log("new event");
+            // Debug.Log("new event");
+            GameManager.instance.AddEvent(EventType.RandomEvent);
         }
         else
         {
             string type = temp_args[0];
             if (type == "bad")
             {
-                Debug.Log("new event bad");
+                // Debug.Log("new event bad");
+                GameManager.instance.AddEvent(EventType.BadEvent);
             }
             else if (type == "good")
             {
-                Debug.Log("new event good");
+                // Debug.Log("new event good");
+                GameManager.instance.AddEvent(EventType.GoodEvent);
             }
         }
     }
@@ -107,6 +110,11 @@ public class CardEffectManager : MonoBehaviour
         GameManager.instance.AddPeople(1);
     }
 
+    private void people_die()
+    {
+        // Debug.Log("people die!");
+    }
+
     private void buff()
     {
         Debug.Log("buff");
@@ -114,7 +122,20 @@ public class CardEffectManager : MonoBehaviour
 
     private void plan()
     {
-        Debug.Log("plan");
+        // Debug.Log("plan");
+        float f_p = Random.Range(0.0f, 3.0f);
+        if (f_p < 1.0f)
+        {
+            HandManager.instance.GenerateCard("建造家园");
+        }
+        else if (f_p < 2.0f)
+        {
+            HandManager.instance.GenerateCard("探索世界");
+        }
+        else
+        {
+            HandManager.instance.GenerateCard("祭祀神祗");
+        }
     }
 
     private void hurt_or_die()
@@ -128,5 +149,11 @@ public class CardEffectManager : MonoBehaviour
         {
             HandManager.instance.GenerateCard("死亡");
         }
+    }
+
+    private void add_card()
+    {
+        string cardName = temp_args[0];
+        HandManager.instance.GenerateCard(cardName);
     }
 }

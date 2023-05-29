@@ -4,98 +4,132 @@
             "eventType": "GoodEvent",
             "eventName": "发现浆果丛",
             "eventDescription": "发现了一处浆果丛！\n获得1张<color=green>永续任务</color>采集果实(1)",
-            "eventEffects": []
+            "eventEffects": [
+                "add_card, 采集果实"
+            ]
         },
         {
             "eventType": "GoodEvent",
             "eventName": "追踪兽群",
-            "eventDescription": "追踪到了一处兽群！\n获得1~3张<color=blue>普通任务</color>狩猎动物（2）",
-            "eventEffects": []
+            "eventDescription": "追踪到了一处兽群！\n获得1张<color=blue>普通任务</color>狩猎动物(2)",
+            "eventEffects": [
+                "add_card, 狩猎动物"
+            ]
         },
         {
             "eventType": "GoodEvent",
             "eventName": "发起贸易",
-            "eventDescription": "遇到了一个其它的部落！你可以发起贸易了\n获得1张<color=green>永续任务</color>贸易之路",
-            "eventEffects": []
+            "eventDescription": "遇到了一个其它的部落！你可以发起贸易了\n获得1张<color=green>永续任务</color>贸易之路(3)",
+            "eventEffects": [
+                "add_card, 贸易之路"
+            ]
         },
         {
             "eventType": "GoodEvent",
             "eventName": "迷路访客",
-            "eventDescription": "一个迷路的原始人来到了你的部落\n获得了1张<color=yellow>限时任务(1)</color>接待旅客(1)",
-            "eventEffects": []
+            "eventDescription": "一个迷路的原始人来到了你的部落\n获得了1张<color=yellow>限时任务</color>接待旅客(1)",
+            "eventEffects": [
+                "add_card, 接待旅客"
+            ]
         },
         {
             "eventType": "GoodEvent",
             "eventName": "未知遗迹",
-            "eventDescription": "比原始更原始的遗迹......\n获得1个随机祝福",
+            "eventDescription": "一个原始的祭坛\n获得1张<color=green>永续任务</color>祭祀神祗(3)",
             "eventEffects": [
-                "发现1张祝福"
+                "add_card, 祭祀神祗"
             ]
         }
     ],
     "badEvents": [
         {
             "eventType": "BadEvent",
-            "eventName": "洪水蔓延",
-            "eventDescription": "洪水把房屋都冲垮了...\n获得1~2张<color=blue>普通任务</color>清理废墟(2)",
-            "eventEffects": []
+            "eventName": "洪水之后",
+            "eventDescription": "洪水把房屋都冲垮了...\n获得1张<color=red>危机任务</color>清理废墟(3)",
+            "eventEffects": [
+                "add_card, 清理废墟"
+            ]
         },
         {
             "eventType": "BadEvent",
             "eventName": "疾病爆发",
-            "eventDescription": "一场未知的疾病爆发了...\n获得2~3张<color=red>危机任务</color>疾病！(1)",
-            "eventEffects": []
+            "eventDescription": "一场未知的疾病爆发了...\n获得3张<color=red>危机任务</color>疾病！(1)",
+            "eventEffects": [
+                "add_card, 疾病！",
+                "add_card, 疾病！",
+                "add_card, 疾病！"
+            ]
         },
         {
             "eventType": "BadEvent",
             "eventName": "敌人袭击",
-            "eventDescription": "敌人偷袭了我们的营地！\n获得1~3张<color=red>危机任务</color>迎战吧！(1)",
-            "eventEffects": []
+            "eventDescription": "敌人偷袭了我们的营地！\n获得2张<color=red>危机任务</color>迎战吧！(1)",
+            "eventEffects": [
+                "add_card, 迎战吧！",
+                "add_card, 迎战吧！"
+            ]
         },
         {
             "eventType": "BadEvent",
             "eventName": "意外火灾",
-            "eventDescription": "一场意外的火灾烧毁了很多粮食...\n获得1~3张<color=red>危机任务</color>食物烧焦了！(1)",
-            "eventEffects": []
+            "eventDescription": "一场意外的火灾烧毁了很多粮食...\n获得3张<color=red>危机任务</color>食物烧了！(1)",
+            "eventEffects": [
+                "add_card, 食物烧了！",
+                "add_card, 食物烧了！",
+                "add_card, 食物烧了！"
+            ]
         },
         {
             "eventType": "BadEvent",
-            "eventName": "部落内斗",
-            "eventDescription": "两个部落成员发生了激烈争斗！最终两败俱伤\n获得1张<color=red>危机任务</color>受伤(3)和1张<color=red>离开</color>",
-            "eventEffects": []
+            "eventName": "内部斗争",
+            "eventDescription": "两个部落成员发生了激烈争斗！最终两败俱伤\n获得1张<color=red>危机任务</color>受伤(3)和1张<color=red>危机任务</color>离去(1)",
+            "eventEffects": [
+                "add_card, 受伤",
+                "add_card, 离去"
+            ]
         }
     ],
-    "normalEvents": [],
-    "randomEvents": [
+    "normalEvents": [
         {
             "eventType": "RandomEvent",
             "eventName": "遥远的雷声",
-            "eventDescription": "远处的雷声让成员们忧心忡忡，是暴风雨来临的预兆吗？\n获得1个<color=red>危机任务</color>未雨筹谋(5)",
-            "eventEffects": []
+            "eventDescription": "远处的雷声让成员们忧心忡忡，是暴风雨来临的预兆吗？\n获得1张<color=red>危机任务</color>未雨筹谋(5)",
+            "eventEffects": [
+                "add_card, 未雨绸缪"
+            ]
         },
         {
             "eventType": "RandomEvent",
             "eventName": "失踪的成员",
-            "eventDescription": "一位部落成员失踪了，需要尽快找到他\n获得1张<color=red>危机任务</color>失踪(1)和1张<color=yellow>限时任务</color>搜救",
-            "eventEffects": []
+            "eventDescription": "一位部落成员失踪了，需要尽快找到他\n获得1张<color=red>危机任务</color>离去(1)和1张<color=yellow>限时任务</color>搜救(3)",
+            "eventEffects": [
+                "add_card, 离去",
+                "add_card, 搜救"
+            ]
         },
         {
             "eventType": "RandomEvent",
             "eventName": "奇特的天象",
-            "eventDescription": "天气变得很奇特，不知道是好是坏\n获得1张<color=yellow>限时任务(1)</color>解读天气",
-            "eventEffects": []
+            "eventDescription": "天气变得很奇特，不知道是好是坏\n获得1张<color=yellow>限时任务</color>解读天气(2)",
+            "eventEffects": [
+                "add_card, 解读天气"
+            ]
         },
         {
             "eventType": "RandomEvent",
             "eventName": "野兽袭击",
             "eventDescription": "一只疯狂的野兽闯入了领地，造成了混乱\n获得1张<color=red>危机任务</color>狩猎野兽(1)",
-            "eventEffects": []
+            "eventEffects": [
+                "add_card, 狩猎野兽"
+            ]
         },
         {
             "eventType": "RandomEvent",
             "eventName": "陌生部族",
             "eventDescription": "发现了一个新部落，但是暂时还不清楚他们的意图\n获得1张<color=blue>普通任务</color>尝试交涉(3)",
-            "eventEffects": []
+            "eventEffects": [
+                "add_card, 尝试交涉"
+            ]
         }
     ]
 }
