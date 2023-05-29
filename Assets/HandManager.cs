@@ -9,19 +9,24 @@ public class HandManager : MonoBehaviour
     public Transform HandDestroyTransform;
     public GameObject CardPrefab;
 
+    public static HandManager instance;
+    void Awake()
+    {
+        if (instance == null) instance = this;
+    }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GenerateCard();
-        }
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     GenerateCard();
+        // }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DiscardCard(HandCardList[0]);
-        }
+        // if (Input.GetKeyDown(KeyCode.D))
+        // {
+        //     DiscardCard(HandCardList[0]);
+        // }
 
         // 检测切换窗口导致的Release
         checkSwitchWindow();
@@ -84,9 +89,27 @@ public class HandManager : MonoBehaviour
         }
     }
 
-    public void GenerateCard()
+    public void GenerateCard(MissionData data)
     {
-        spawnCard(draw: false);
+        spawnCard(data, draw: false);
+    }
+
+    public void GenerateCard(string name)
+    {
+        MissionData data = MissionHolder.instance.GetMissionData(name);
+        GenerateCard(data);
+    }
+
+    public void DrawCard(MissionData data)
+    {
+        spawnCard(data, draw: true);
+    }
+
+    public void DrawCard(string name)
+    {
+        Debug.Log("Draw " + name);
+        MissionData data = MissionHolder.instance.GetMissionData(name);
+        DrawCard(data);
     }
 
     public void DiscardCard(CardController card)
@@ -99,7 +122,7 @@ public class HandManager : MonoBehaviour
         placeCard(card, grid);
     }
 
-    private void spawnCard(bool draw = false)
+    private void spawnCard(MissionData data, bool draw = false)
     {
         GameObject cardObject = GameObject.Instantiate(CardPrefab);
         // Add to Layout
@@ -110,6 +133,7 @@ public class HandManager : MonoBehaviour
 
         // Init Card & Add to List
         CardController card = cardObject.GetComponent<CardController>();
+        card.InitData(data);
         card.BindHandManager(this); // init
         HandCardList.Add(card); // add to list
     }
@@ -138,6 +162,9 @@ public class HandManager : MonoBehaviour
         // card & grid bind
         card.BindGrid(grid);
         grid.BindCard(card);
+
+        // cost
+        CardEffectManager.instance.ExecuteEffects(card.missionCosts);
     }
 
     private void pickCard(CardController card, bool backToHand = true)
@@ -229,5 +256,108 @@ public class HandManager : MonoBehaviour
     [ReadOnly]
     public List<CardController> GridCardList = new List<CardController>();
 
+    public GameObject GridPrefab;
+
+    public GameObject TheGridLayout;
+
+    public void AddGrid()
+    {
+        GameObject gridObject = GameObject.Instantiate(GridPrefab);
+        gridObject.transform.SetParent(TheGridLayout.transform);
+        gridObject.transform.localScale = Vector3.one;
+        gridObject.transform.localRotation = Quaternion.identity;
+        // add to list
+        GridList.Add(gridObject.GetComponent<GridController>());
+    }
+
+    public void RemoveGrid(GridController grid)
+    {
+        GridList.Remove(grid);
+
+        GameObject.Destroy(grid.gameObject);
+    }
+
+
+
+    // Execute Cards
+
+    public void ExecuteCards()
+    {
+        // check emergency cards
+        if (checkEmergencyCardsInHand())
+        {
+            Debug.LogWarning("Emergency!");
+            return;
+        }
+
+        // discard time card in hands
+        discardTimeCardsInHand();
+
+        // execute card in grid
+        executeCardsInGrid();
+    }
+
+    private bool checkEmergencyCardsInHand()
+    {
+        foreach (var card in HandCardList)
+        {
+            if (card.missionType == MissionType.Emergency) return true;
+        }
+        return false;
+    }
+
+    private void discardTimeCardsInHand()
+    {
+        List<CardController> toDiscardList = new List<CardController>();
+        foreach (var card in HandCardList)
+        {
+            if (card.missionType == MissionType.Normal && card.missionLeft >= 0)
+            {
+                toDiscardList.Add(card);
+            }
+        }
+        foreach (var card in toDiscardList)
+        {
+            DiscardCard(card);
+        }
+    }
+
+    private void executeCardsInGrid()
+    {
+        List<CardController> toDestroyCardList = new List<CardController>();
+
+        foreach (var card in GridCardList)
+        {
+            card.missionProgress -= 1;
+            CardEffectManager.instance.ExecuteEffects(card.turnEffects);
+            if (card.missionProgress <= 0)
+            {
+                // execute end effects
+                CardEffectManager.instance.ExecuteEffects(card.endEffects);
+                if (card.missionType == MissionType.Continues)
+                {
+                    // card.InitData()
+                    card.ResetData();
+                }
+                else
+                {
+                    toDestroyCardList.Add(card);
+                }
+
+            }
+
+            card.RefreshView();
+        }
+
+        foreach (var card in toDestroyCardList)
+        {
+            selectedCard = card;
+            if (selectedCard && selectedCard.binding)
+            {
+                pickCard(selectedCard, backToHand: true);
+            }
+            DiscardCard(card);
+        }
+    }
 
 }

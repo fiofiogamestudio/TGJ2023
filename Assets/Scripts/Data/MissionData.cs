@@ -14,8 +14,9 @@ public class MissionData
 {
     public MissionType missionType;
     public string name;
-    public string descripton;
+    public string description;
     public int amount;
+    public int left;
     public string[] costs;
     public string[] turnEffects; // 每回合持续的效果
     public string[] endEffects; // 任务完成的效果

@@ -13,6 +13,12 @@ public class CardSpriteHolder : MonoBehaviour
 
     public List<CardSpritePair> CardSpriteMap = new List<CardSpritePair>();
 
+    public static CardSpriteHolder instance;
+    void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     public Sprite GetCardSprite(string name)
     {
         foreach (var pair in CardSpriteMap)

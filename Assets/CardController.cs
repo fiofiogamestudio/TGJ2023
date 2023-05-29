@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
@@ -51,8 +52,6 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerDownH
         }
     }
 
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         handManager.HoverCard(this);
@@ -73,4 +72,103 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerDownH
         handManager.ExitCard(this);
     }
 
+
+
+
+    [Header("Card Info")]
+    [ReadOnly]
+    public MissionType missionType;
+    [ReadOnly]
+    public string missionName;
+    [ReadOnly]
+    public string missoinDescription;
+    [ReadOnly]
+    public int missionAmount;
+    [ReadOnly]
+    public int missionProgress;
+    [ReadOnly]
+    public int missionLeft;
+    [ReadOnly]
+    public string[] missionCosts;
+    [ReadOnly]
+    public string[] turnEffects;
+    [ReadOnly]
+    public string[] endEffects;
+
+    // Init Data
+    public void InitData(MissionData data)
+    {
+        missionType = data.missionType;
+        missionName = data.name;
+        missoinDescription = data.description;
+        missionAmount = data.amount;
+        missionProgress = data.amount;
+        missionLeft = data.left;
+        missionCosts = data.costs;
+        turnEffects = data.turnEffects;
+        endEffects = data.endEffects;
+
+        initView();
+    }
+
+    public void ResetData()
+    {
+        missionProgress = missionAmount;
+    }
+
+    [Header("Card View")]
+    public Image CardTitleBG;
+    public Text CardNameText;
+    public Image CardImage;
+    public Text CardDescText;
+    public Image ContinuesIcon;
+    public Image NormalIcon;
+    public Image TimeIcon;
+    public Image EmergencyIcon;
+
+    public Text CardProgressText;
+
+
+    private void initView()
+    {
+        switch (missionType)
+        {
+            case MissionType.Normal:
+                if (missionLeft < 0)
+                {
+                    // 普通任务
+                    CardTitleBG.color = ColorHolder.instance.NormalMissionColor;
+                    NormalIcon.gameObject.SetActive(true);
+                    NormalIcon.color = ColorHolder.instance.NormalMissionColor;
+                }
+                else
+                {
+                    // 限时任务
+                    CardTitleBG.color = ColorHolder.instance.TimeMissonColor;
+                    TimeIcon.gameObject.SetActive(true);
+                    TimeIcon.color = ColorHolder.instance.TimeMissonColor;
+                }
+                break;
+            case MissionType.Continues:
+                CardTitleBG.color = ColorHolder.instance.ContinuesMissionColor;
+                ContinuesIcon.gameObject.SetActive(true);
+                ContinuesIcon.color = ColorHolder.instance.ContinuesMissionColor;
+                break;
+            case MissionType.Emergency:
+                CardTitleBG.color = ColorHolder.instance.EmergencyMissionColor;
+                EmergencyIcon.gameObject.SetActive(true);
+                ContinuesIcon.color = ColorHolder.instance.EmergencyMissionColor;
+                break;
+        }
+
+        CardNameText.text = missionName;
+        CardImage.sprite = CardSpriteHolder.instance.GetCardSprite(missionName);
+        CardDescText.text = missoinDescription;
+        CardProgressText.text = missionAmount.ToString();
+    }
+
+    public void RefreshView()
+    {
+        CardProgressText.text = missionProgress.ToString();
+    }
 }

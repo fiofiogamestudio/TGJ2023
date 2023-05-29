@@ -2,73 +2,106 @@
     "normalMissions": [
         {
             "missionType": 0,
-            "name": "Hunting Animals",
-            "description": "Hunt animals for food.",
+            "name": "狩猎动物",
+            "description": "获得10食物\n可能受伤",
             "amount": 2,
+            "left": -1,
             "costs": [],
             "turnEffects": [],
             "endEffects": [
-                "Get 10 food",
-                "Get Injured mission if failed"
+                "food, 10",
+                "hurt, 5"
+            ]
+        },
+        {
+            "missionType": 0,
+            "name": "初始物资",
+            "description": "获得10食物",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "food, 10"
             ]
         }
     ],
     "continuesMissions": [
         {
             "missionType": 1,
-            "name": "Gathering Berries",
-            "description": "Gather berries for food.",
+            "name": "采集果实",
+            "description": "获得2食物",
             "amount": 1,
+            "left": -1,
             "costs": [],
             "turnEffects": [
-                "Get 2 food"
+                "food, 2"
             ],
             "endEffects": []
         },
         {
             "missionType": 1,
-            "name": "Exploring The World",
-            "description": "Explore the world for new possibilities.",
+            "name": "探索世界",
+            "description": "发现1个随机事件",
             "amount": 5,
+            "left": -1,
             "costs": [],
             "turnEffects": [],
             "endEffects": [
-                "Discover 1 event card"
+                "new_event"
             ]
         },
         {
             "missionType": 1,
-            "name": "Building Home",
-            "description": "Build homes to increase the population.",
+            "name": "建造家园",
+            "description": "增加1人口",
             "amount": 5,
+            "left": -1,
             "costs": [],
             "turnEffects": [],
             "endEffects": [
-                "Increase 1 population"
+                "people, 1"
             ]
         },
         {
             "missionType": 1,
-            "name": "Planning Development",
-            "description": "Plan for the development of the tribe.",
+            "name": "祭祀神祗",
+            "description": "消耗5食物\n获得1个随机祝福",
             "amount": 3,
-            "costs": [],
+            "left": -1,
+            "costs": [
+                "food, -5"
+            ],
             "turnEffects": [],
             "endEffects": [
-                "Get Exploring The World mission or Sacrifice mission or Building mission"
+                "buff"
             ]
         },
         {
             "missionType": 1,
-            "name": "Sacrificing to the Gods",
-            "description": "Sacrifice to the gods for blessings.",
+            "name": "规划发展",
+            "description": "获得1张随机\n初始任务",
             "amount": 5,
+            "left": -1,
             "costs": [],
             "turnEffects": [],
             "endEffects": [
-                "Choose 1 god and get a blessing"
+                "plan"
             ]
         }
     ],
-    "emergencyMission": []
+    "emergencyMission": [
+        {
+            "missionType": 2,
+            "name": "迎战吧！",
+            "description": "可能受伤或死亡",
+            "amount": 1,
+            "left": -1,
+            "costs": [],
+            "turnEffects": [],
+            "endEffects": [
+                "hurt_or_die"
+            ]
+        }
+    ]
 }

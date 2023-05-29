@@ -1,0 +1,47 @@
+{
+    "simpleGameData": {
+        "gameType": "Simple",
+        "name": "安宁之家",
+        "descripton": "你们来到了一处丰饶之地，一切似乎都是那么美好",
+        "goodPossibility": 4,
+        "badPossibility": 2,
+        "randomPosiibility": 4,
+        "initMissions": [
+            "初始物资",
+            "采集果实",
+            "采集果实",
+            "建造家园",
+            "规划发展"
+        ]
+    },
+    "normalGameData": {
+        "gameType": "Normal",
+        "name": "未知之地",
+        "descripton": "你们来到了一片充满机遇的土地，但也面临着未知的挑战",
+        "goodPossibility": 3,
+        "badPossibility": 3,
+        "randomPosiibility": 4,
+        "initMissions": [
+            "狩猎动物",
+            "狩猎动物",
+            "探索世界",
+            "规划发展",
+            "迎战吧！"
+        ]
+    },
+    "hardGameData": {
+        "gameType": "Hard",
+        "name": "绝望之境",
+        "descripton": "你们是一群被驱逐至苦寒之地的遗弃者，必须在绝望中寻找一线生机.",
+        "goodPossibility": 2,
+        "badPossibility": 4,
+        "randomPosiibility": 4,
+        "initMissions": [
+            "采集果实",
+            "规划发展",
+            "受伤",
+            "传染病",
+            "传染病"
+        ]
+    }
+}

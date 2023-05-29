@@ -12,8 +12,10 @@ public class MissionHolder : MonoBehaviour
     [ReadOnly]
     public MissionData[] EmergencyMissions;
 
+    public static MissionHolder instance;
     void Awake()
     {
+        if (instance == null) instance = this;
         loadMissions();
     }
 
@@ -23,5 +25,22 @@ public class MissionHolder : MonoBehaviour
         NormalMissions = missionWrapper.normalMissions;
         ContinuesMissions = missionWrapper.continuesMissions;
         EmergencyMissions = missionWrapper.emergencyMission;
+    }
+
+    public MissionData GetMissionData(string name)
+    {
+        foreach (var mission in NormalMissions)
+        {
+            if (mission.name == name) return mission;
+        }
+        foreach (var mission in ContinuesMissions)
+        {
+            if (mission.name == name) return mission;
+        }
+        foreach (var mission in EmergencyMissions)
+        {
+            if (mission.name == name) return mission;
+        }
+        return null;
     }
 }
